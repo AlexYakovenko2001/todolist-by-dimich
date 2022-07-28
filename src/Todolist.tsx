@@ -7,37 +7,37 @@ type TasksType = {
     isDone: boolean
 }
 
-type TodolistPropsType = {
+type TodolistPropsTypes = {
     title: string
     tasks: Array<TasksType>
-    removeTask: (id: number) => void
-    changeTaskList : (value : FilterType) => void
+    removeTask: (id:number) => void
+    changeTasksList: (value: FilterType)=>void
 }
 
-export const Todolist = (props: TodolistPropsType) => {
+export const Todolist = (props: TodolistPropsTypes) => {
     return (
-        <div>
-            <h3>{props.title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <h3>{props.title}</h3>
+                <div>
+                    <input/>
+                    <button>+</button>
+                </div>
+                <ul>
+                    {props.tasks.map((t)=>{
+                        return (
+                            <li key={t.id}>
+                                <input type="checkbox" checked={t.isDone}/>
+                                <span>{t.title}</span>
+                                <button onClick={()=>{props.removeTask(t.id)}}>X</button>
+                            </li>
+                        )
+                    })}
+                </ul>
+                <div>
+                    <button onClick={()=>{props.changeTasksList('all')}}>All</button>
+                    <button onClick={()=>{props.changeTasksList('active')}}>Active</button>
+                    <button onClick={()=>{props.changeTasksList('completed')}}>Completed</button>
+                </div>
             </div>
-            <ul>
-                {props.tasks.map((t) => {
-                    return (
-                        <li key={t.id}>
-                            <input type="checkbox" checked={t.isDone}/>
-                            <span>{t.title}</span>
-                            <button onClick={() => {props.removeTask(t.id)}}>x</button>
-                        </li>
-                    )
-                })}
-            </ul>
-            <div>
-                <button onClick={()=>{props.changeTaskList('all')}}>All</button>
-                <button onClick={()=>{props.changeTaskList('active')}}>Active</button>
-                <button onClick={()=>{props.changeTaskList('completed')}}>Completed</button>
-            </div>
-        </div>
     )
 }
