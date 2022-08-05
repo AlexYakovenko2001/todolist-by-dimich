@@ -13,26 +13,27 @@ function App() {
         {id: v1(), title: 'Rest API', isDone: false},
         {id: v1(), title: 'GraphQL', isDone: false}])
 
+
     const removeTask = (id: string) => {
-        setTasks(tasks.filter(t => t.id !== id))
+        setTasks(tasks.filter( t => t.id !== id ))
     }
+
 
     const [filter, setFilter] = useState<FilterType>('all')
-
     let filtredTasks = tasks;
-    if (filter==='active') {
-        filtredTasks = tasks.filter(t=>!t.isDone)
+    if (filter === 'active') {
+        filtredTasks = tasks.filter( t => !t.isDone )
     }
-    if (filter==='completed') {
-        filtredTasks = tasks.filter(t=>t.isDone)
+    if (filter === 'completed') {
+        filtredTasks = tasks.filter( t => t.isDone )
+    }
+    const getFiltredTasks = (filterValue: FilterType) => {
+        setFilter(filterValue)
     }
 
-    const getFiltredTasks = (buttonName: FilterType) => {
-      setFilter(buttonName)
-    }
 
     const addTask = (newTitle: string) => {
-        let newTask = {id: v1(), title: newTitle, isDone: false}
+        let newTask =  {id: v1(), title: newTitle, isDone: false}
         let newTasks = [newTask, ...tasks]
         setTasks(newTasks)
     }
