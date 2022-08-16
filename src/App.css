@@ -1,5 +1,6 @@
 .App {
- margin: 40px;
+  padding: 30px;
+  display: flex;
 }
 
 .App > div {
@@ -18,8 +19,6 @@
   background-color: aquamarine;
 }
 
-
 .is-done {
   opacity: 0.5;
 }
-
